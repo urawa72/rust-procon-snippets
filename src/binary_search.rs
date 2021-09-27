@@ -1,10 +1,13 @@
-use std::cmp::Ordering;
+use cargo_snippet::snippet;
 
+#[snippet("BinarySearch")]
+use std::cmp::Ordering;
 pub trait BinarySearch<T> {
     fn lower_bound(&self, x: &T) -> usize;
     fn upper_bound(&self, x: &T) -> usize;
 }
 
+#[snippet("BinarySearch")]
 impl<T: Ord> BinarySearch<T> for [T] {
     fn lower_bound(&self, x: &T) -> usize {
         let mut low = 0;
