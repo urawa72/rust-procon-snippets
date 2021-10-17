@@ -1,7 +1,7 @@
 use cargo_snippet::snippet;
 
 #[allow(unused_macros)]
-#[snippet("min")]
+#[snippet("min!")]
 macro_rules! min {
     ($a:expr $(,)*) => {{
         $a
@@ -15,7 +15,7 @@ macro_rules! min {
 }
 
 #[allow(unused_macros)]
-#[snippet("chmin")]
+#[snippet("chmin!")]
 macro_rules! chmin {
     ($base:expr, $($cmps:expr),+ $(,)*) => {{
         let cmp_min = min!($($cmps),+);
@@ -29,7 +29,7 @@ macro_rules! chmin {
 }
 
 #[allow(unused_macros)]
-#[snippet("max")]
+#[snippet("max!")]
 macro_rules! max {
     ($a:expr $(,)*) => {{
         $a
@@ -43,7 +43,7 @@ macro_rules! max {
 }
 
 #[allow(unused_macros)]
-#[snippet("chmax")]
+#[snippet("chmax!")]
 macro_rules! chmax {
     ($base:expr, $($cmps:expr),+ $(,)*) => {{
         let cmp_max = max!($($cmps),+);
@@ -54,6 +54,28 @@ macro_rules! chmax {
             false
         }
     }};
+}
+
+#[allow(unused)]
+#[snippet("chmax")]
+fn chmax<T: Ord>(a: &mut T, b: T) -> bool {
+    if *a < b {
+        *a = b;
+        true
+    } else {
+        false
+    }
+}
+
+#[allow(unused)]
+#[snippet("chmin")]
+fn chmin<T: Ord>(a: &mut T, b: T) -> bool {
+    if *a > b {
+        *a = b;
+        true
+    } else {
+        false
+    }
 }
 
 #[test]
@@ -74,4 +96,20 @@ fn test_chmax() {
     let result = chmax!(a, b, c);
     assert_eq!(result, true);
     assert_eq!(a, 13);
+}
+
+#[test]
+fn test_fn_chmax() {
+    let mut a = 10;
+    let b = 20;
+    assert_eq!(chmax(&mut a, b), true);
+    assert_eq!(a, 20);
+}
+
+#[test]
+fn test_fn_chmix() {
+    let mut a = 10;
+    let b = 5;
+    assert_eq!(chmin(&mut a, b), true);
+    assert_eq!(a, 5);
 }
