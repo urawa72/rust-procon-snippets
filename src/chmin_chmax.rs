@@ -1,7 +1,6 @@
 use cargo_snippet::snippet;
 
 #[allow(unused_macros)]
-#[snippet("min!")]
 macro_rules! min {
     ($a:expr $(,)*) => {{
         $a
@@ -15,7 +14,6 @@ macro_rules! min {
 }
 
 #[allow(unused_macros)]
-#[snippet("chmin!")]
 macro_rules! chmin {
     ($base:expr, $($cmps:expr),+ $(,)*) => {{
         let cmp_min = min!($($cmps),+);
@@ -29,7 +27,6 @@ macro_rules! chmin {
 }
 
 #[allow(unused_macros)]
-#[snippet("max!")]
 macro_rules! max {
     ($a:expr $(,)*) => {{
         $a
@@ -43,7 +40,6 @@ macro_rules! max {
 }
 
 #[allow(unused_macros)]
-#[snippet("chmax!")]
 macro_rules! chmax {
     ($base:expr, $($cmps:expr),+ $(,)*) => {{
         let cmp_max = max!($($cmps),+);
@@ -56,7 +52,6 @@ macro_rules! chmax {
     }};
 }
 
-#[allow(unused)]
 #[snippet("chmax")]
 fn chmax<T: Ord>(a: &mut T, b: T) -> bool {
     if *a < b {
@@ -67,7 +62,6 @@ fn chmax<T: Ord>(a: &mut T, b: T) -> bool {
     }
 }
 
-#[allow(unused)]
 #[snippet("chmin")]
 fn chmin<T: Ord>(a: &mut T, b: T) -> bool {
     if *a > b {
