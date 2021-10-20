@@ -53,6 +53,7 @@ macro_rules! chmax {
 }
 
 #[snippet("chmax")]
+#[allow(dead_code)]
 fn chmax<T: Ord>(a: &mut T, b: T) -> bool {
     if *a < b {
         *a = b;
@@ -63,6 +64,7 @@ fn chmax<T: Ord>(a: &mut T, b: T) -> bool {
 }
 
 #[snippet("chmin")]
+#[allow(dead_code)]
 fn chmin<T: Ord>(a: &mut T, b: T) -> bool {
     if *a > b {
         *a = b;
